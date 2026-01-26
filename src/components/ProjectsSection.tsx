@@ -12,7 +12,7 @@ const projects = [
     tags: ["GenAI", "AWS Aurora", "PGVector", "Titan", "AWS Bedrock", "LLM"],
   },
   {
-    title: "Outreach & Communication Agentic System",
+    title: "Outreach Agentic System",
     description: "Built an outreach automation platform using LangChain and LangGraph with tool-calling agents for resume-aware cover letter generation, email summarization, automated drafting, and scheduling. Utilized LangChain's unified LLM layer to select between four available LLMs dynamically. Implemented a real-time Gmail webhook sync, ensuring the platform only displays emails sent from within the outreach workflow for focused engagement.",
     tags: ["LangChain", "LangGraph", "Gmail", "Automation", "Agents"],
   },
