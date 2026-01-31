@@ -23,6 +23,7 @@ export const Contact2 = ({
   linkedin = "https://linkedin.com/in/vinoth-kumar-793043250",
   github = "https://github.com/vinoth-vk-16",
 }: Contact2Props) => {
+  const [emailCopied, setEmailCopied] = useState(false);
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -83,54 +84,61 @@ export const Contact2 = ({
   };
 
   return (
-    <section className="py-16 md:py-32">
+    <section className="py-16 md:py-32 bg-black text-white">
       <div className="container px-4">
-        <div className="mx-auto flex max-w-screen-xl flex-col justify-between gap-10 lg:flex-row lg:gap-32 lg:pl-32">
-          <div className="flex max-w-sm flex-col justify-between gap-10">
+        <div className="mx-auto flex max-w-screen-xl flex-col justify-between gap-10 lg:flex-row lg:gap-32 lg:pl-20">
+          <div className="flex max-w-sm flex-col justify-between gap-10 mx-auto lg:mx-0">
             <div className="text-center lg:text-left">
-              <h1 className="mb-2 text-4xl md:text-5xl font-semibold lg:mb-1 lg:text-6xl">
+              <h1 className="mb-2 text-4xl md:text-5xl font-semibold lg:mb-1 lg:text-6xl text-white">
                 {title}
               </h1>
-              <p className="text-muted-foreground text-sm md:text-base">{description}</p>
-            </div>
-            <div className="mx-auto w-fit lg:mx-0">
-              <h3 className="mb-6 text-center text-xl md:text-2xl font-semibold lg:text-left">
-                Contact Details
-              </h3>
-              <div className="flex flex-col gap-4">
+              <p className="text-gray-400 text-sm md:text-base mb-6">{description}</p>
+              
+              <div className="flex flex-row gap-8 justify-center lg:justify-start">
                 <a 
                   href={`tel:${phone}`} 
-                  className="flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors"
+                  className="text-gray-400 hover:text-white transition-colors"
+                  aria-label="Phone"
                 >
-                  <Phone className="h-5 w-5" />
-                  <span>{phone}</span>
+                  <Phone className="h-8 w-8" />
                 </a>
-                <a 
-                  href={`mailto:${email}`} 
-                  className="flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors"
+                <button
+                  onClick={() => {
+                    navigator.clipboard.writeText(email);
+                    setEmailCopied(true);
+                    setTimeout(() => setEmailCopied(false), 2000);
+                  }}
+                  className="text-muted-foreground hover:text-foreground transition-colors relative"
+                  aria-label="Copy Email"
                 >
-                  <Mail className="h-5 w-5" />
-                  <span>{email}</span>
-                </a>
+                  <Mail className="h-8 w-8" />
+                  {emailCopied && (
+                    <span className="absolute -top-8 left-1/2 -translate-x-1/2 bg-white text-black text-xs px-2 py-1 rounded whitespace-nowrap">
+                      Copied!
+                    </span>
+                  )}
+                </button>
                 <a 
                   href={linkedin} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors"
+                  className="text-gray-400 hover:text-white transition-colors"
+                  aria-label="LinkedIn"
                 >
-                  <Linkedin className="h-5 w-5" />
-                  <span>LinkedIn</span>
+                  <Linkedin className="h-8 w-8" />
                 </a>
                 <a 
                   href={github} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors"
+                  className="text-gray-400 hover:text-white transition-colors"
+                  aria-label="GitHub"
                 >
-                  <Github className="h-5 w-5" />
-                  <span>GitHub</span>
+                  <Github className="h-8 w-8" />
                 </a>
               </div>
+            </div>
+            <div className="mx-auto w-fit lg:mx-0">
             </div>
           </div>
           <form onSubmit={handleSubmit} className="flex max-w-screen-md flex-col gap-6 p-4">

@@ -335,6 +335,16 @@
     position: relative;
     z-index: 10;
   }
+  
+  .hero-image-bg::before {
+    width: 300px;
+    height: 150px;
+  }
+  
+  .hero-image-bg::after {
+    width: 280px;
+    height: 140px;
+  }
 
   .stats {
     gap: 2rem;
@@ -599,7 +609,7 @@
 /* Responsive Timeline */
 @media (max-width: 768px) {
   .about-section {
-    padding: 6rem 2rem 3rem;
+    padding: 8rem 2rem 3rem;
   }
 
   .timeline-enhanced {

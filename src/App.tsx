@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import { useState, useEffect } from 'react'
 import { AnimatedShapes } from './components/AnimatedShapes'
 import { ProjectsSection } from './components/ProjectsSection'
+import { LearningsSection } from './components/LearningsSection'
 
 function App() {
   const [displayText, setDisplayText] = useState('')
@@ -33,7 +34,7 @@ function App() {
           <li><a href="#hero" onClick={() => setMobileMenuOpen(false)}>Home</a></li>
           <li><a href="#about" onClick={() => setMobileMenuOpen(false)}>About Me</a></li>
           <li><a href="#projects" onClick={() => setMobileMenuOpen(false)}>Projects</a></li>
-          <li><a href="#blog" onClick={() => setMobileMenuOpen(false)}>Blog</a></li>
+          <li><a href="#learnings" onClick={() => setMobileMenuOpen(false)}>Learnings</a></li>
         </ul>
         <a href="#contact" className="book-call desktop-only">Get in Touch ↗</a>
         <button className="hamburger" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
@@ -106,6 +107,9 @@ function App() {
       {/* Projects Section */}
       <ProjectsSection />
 
+      {/* Learnings Section */}
+      <LearningsSection />
+
       {/* Contact Section */}
       <section id="contact" className="section">
         <Contact2 
@@ -113,7 +117,7 @@ function App() {
           description="I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision."
           phone="+91 6380091722"
           email="imvinothvk521@gmail.com"
-          linkedin="https://www.linkedin.com/in/vinothkumar-a-6b8b3b1b9/"
+          linkedin="https://www.linkedin.com/in/vinoth-kumar-793043250"
         />
       </section>
     </div>
