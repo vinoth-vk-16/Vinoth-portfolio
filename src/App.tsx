@@ -2,13 +2,21 @@ import './App.css'
 import { TimelineSection } from './components/TimelineSection'
 import { Contact2 } from './components/ui/contact-2'
 import { motion } from 'framer-motion'
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { AnimatedShapes } from './components/AnimatedShapes'
 import { ProjectsSection } from './components/ProjectsSection'
 import { LearningsSection } from './components/LearningsSection'
 
 function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [heroImageLoaded, setHeroImageLoaded] = useState(false)
+  const heroImgRef = useRef<HTMLImageElement>(null)
+
+  // If the image is already cached the `onLoad` event won't fire — handle that.
+  const handleHeroImageRef = (el: HTMLImageElement | null) => {
+    (heroImgRef as React.MutableRefObject<HTMLImageElement | null>).current = el
+    if (el?.complete) setHeroImageLoaded(true)
+  }
 
   return (
     <div className="app">
@@ -75,12 +83,21 @@ function App() {
             </motion.div>
           </div>
 
-          <div className="hero-image-container">
+          <div
+            className="hero-image-container"
+            style={{
+              opacity: heroImageLoaded ? 1 : 0,
+              transition: 'opacity 0.4s ease',
+            }}
+          >
             <div className="hero-image-bg"></div>
-            <img 
-              src="/vk-image.png" 
-              alt="Vinoth Kumar" 
+            <img
+              ref={handleHeroImageRef}
+              src="/vk-image.png"
+              alt="Vinoth Kumar"
               className="hero-image"
+              fetchPriority="high"
+              onLoad={() => setHeroImageLoaded(true)}
             />
           </div>
         </div>
