@@ -85,13 +85,13 @@ export const Contact2 = ({
 
   return (
     <section className="py-16 md:py-32 bg-black text-white pl-[max(1rem,env(safe-area-inset-left))] pr-[max(1rem,env(safe-area-inset-right))]">
-      <div className="container px-4 max-w-full">
+      <div className="w-full px-4">
         <div className="mx-auto flex max-w-screen-xl flex-col justify-between gap-10 lg:flex-row lg:gap-32 lg:pl-20">
           <div className="flex max-w-sm flex-col justify-between gap-10 mx-auto lg:mx-0">
             <div className="text-center lg:text-left">
-              <h1 className="mb-2 text-3xl font-semibold md:text-4xl lg:mb-1 lg:text-4xl text-white">
+              <h2 className="mb-2 text-3xl font-semibold md:text-4xl lg:mb-1 lg:text-4xl text-white">
                 {title}
-              </h1>
+              </h2>
               <p className="text-gray-400 text-sm md:text-base mb-6">{description}</p>
               
               <div className="flex flex-row gap-8 justify-center lg:justify-start">
@@ -137,8 +137,6 @@ export const Contact2 = ({
                   <Github className="h-8 w-8" />
                 </a>
               </div>
-            </div>
-            <div className="mx-auto w-fit lg:mx-0">
             </div>
           </div>
           <form onSubmit={handleSubmit} className="flex w-full max-w-screen-md flex-col gap-6 p-4 min-w-0">

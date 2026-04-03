@@ -1,6 +1,6 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useMemo } from 'react';
 import { motion, useMotionValue, useTransform } from 'framer-motion';
-import { RotateCcw, Shuffle, ChevronLeft, ChevronRight, Github } from 'lucide-react';
+import { RotateCcw, Shuffle, ChevronLeft, ChevronRight, Github as GithubIcon } from 'lucide-react';
 
 export interface CardStackItem {
   id: number;
@@ -21,10 +21,6 @@ export function CardStack({ cards: initialData, className = '' }: CardStackProps
   const total = initialData.length;
 
   const [stack, setStack] = useState<CardStackItem[]>(() => [...initialData]);
-
-  useEffect(() => {
-    setStack([...initialData]);
-  }, [initialData]);
 
   /** Which project is on top — always derived from stack[0], never a separate counter (fixes shuffle / long sessions). */
   const activeIndex = useMemo(() => {
@@ -210,7 +206,7 @@ export function CardStack({ cards: initialData, className = '' }: CardStackProps
                             className="mt-1 inline-flex shrink-0 items-center gap-1.5 text-xs font-medium text-neutral-900 underline-offset-4 hover:underline"
                             onClick={(e) => e.stopPropagation()}
                           >
-                            <Github className="h-3.5 w-3.5" />
+                            <GithubIcon className="h-3.5 w-3.5" />
                             GitHub
                           </a>
                         ) : null}
