@@ -35,7 +35,7 @@ export const LearningsSection = () => {
   return (
     <section id="learnings" className="learnings-section section">
       <div className="learnings-container">
-        <h2 className="learnings-main-title">Key Learnings</h2>
+        <h2 className="learnings-main-title">Learnings</h2>
         <div className="learnings-scroll-area">
           <div className="learnings-content">
             {learnings.map((learning, index) => (

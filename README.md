@@ -72,4 +72,9 @@ export default defineConfig([
 ])
 ```
 # Vinoth-portfolio
-# Vinoth-portfolio
+
+Work and education timeline labels (including current role dates) are edited in `src/components/TimelineSection.tsx`.
+
+Hero headline, byline, and intro paragraphs live in `src/App.tsx` (`#hero`). Work history is under the **Experience** section (`#experience`, timeline only—no separate intro block).
+
+**Responsive layout:** Main breakpoints are `1024px`, `768px`, and `480px` in `src/App.css` and `src/index.css`. Notched devices use `env(safe-area-inset-*)` for nav, hero, sections, and scroll hints. The viewport meta tag uses `viewport-fit=cover` in `index.html`. Anchor scrolling accounts for the fixed header via `scroll-padding-top` on `html`.

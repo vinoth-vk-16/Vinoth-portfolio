@@ -1,3 +1,5 @@
+import { useMemo, useRef } from 'react';
+import { CardStack, type CardStackItem } from './ui/card-stack';
 import { BlogPostCard } from './ui/blog-post-card';
 
 const projects = [
@@ -17,7 +19,7 @@ const projects = [
   },
   {
     title: "Developer Workflow Automation System using GenAI",
-    description: "Designed a GenAI-powered system that analyzes codebases and retrieves similar PRs using Titan embeddings with PGVector on AWS Aurora. It generates detailed implementation strategies by comparing historical patterns with the active code. Evaluated 6 different LLMs to determine the most efficient model for code reasoning, latency, and contextual depth. Integrated an AWS Bedrock agent capable of extracting developer metrics, answering engineering queries, and automating tasks such as meeting scheduling and issue/PR creation.",
+    description: "Designed a GenAI-powered system that analyzes codebases and retrieves similar PRs using Titan embeddings with PGVector on AWS Aurora. It generates detailed implementation strategies by comparing historical patterns with the active code. Evaluated 6 different LLMs to determine the most efficient model for code reasoning, latency, and contextual depth. Integrated an AWS Bedrock agent capable of extracting developer metrics, answering engineering queries, and automating tasks such as meeting scheduling or issue/PR creation.",
     tags: ["GenAI", "AWS Aurora", "PGVector", "Titan", "AWS Bedrock", "LLM"],
     image: "/Framer User Content/Shape 28.svg",
     github: "https://github.com/vinoth-vk-16/developer-workflow-automation",
@@ -53,11 +55,63 @@ const projects = [
 ];
 
 export const ProjectsSection = () => {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const isDragging = useRef(false);
+  const startX = useRef(0);
+  const scrollLeft = useRef(0);
+
+  const stackCards: CardStackItem[] = useMemo(
+    () =>
+      projects.map((p, i) => ({
+        id: i + 1,
+        src: p.image,
+        alt: p.title,
+        title: p.title,
+        description: p.description,
+        github: p.github,
+      })),
+    []
+  );
+
+  const onMouseDown = (e: React.MouseEvent) => {
+    isDragging.current = true;
+    startX.current = e.pageX - (scrollRef.current?.offsetLeft ?? 0);
+    scrollLeft.current = scrollRef.current?.scrollLeft ?? 0;
+    if (scrollRef.current) scrollRef.current.style.cursor = 'grabbing';
+  };
+
+  const onMouseLeave = () => {
+    isDragging.current = false;
+    if (scrollRef.current) scrollRef.current.style.cursor = 'grab';
+  };
+
+  const onMouseUp = () => {
+    isDragging.current = false;
+    if (scrollRef.current) scrollRef.current.style.cursor = 'grab';
+  };
+
+  const onMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging.current || !scrollRef.current) return;
+    e.preventDefault();
+    const x = e.pageX - scrollRef.current.offsetLeft;
+    const walk = (x - startX.current) * 1.5;
+    scrollRef.current.scrollLeft = scrollLeft.current - walk;
+  };
+
   return (
     <section id="projects" className="projects-section section">
       <div className="projects-container">
         <h2 className="section-title">Projects</h2>
-        <div className="projects-scroll">
+
+        {/* Mobile & small tablet: classic horizontal cards */}
+        <div
+          className="projects-scroll md:hidden"
+          ref={scrollRef}
+          onMouseDown={onMouseDown}
+          onMouseLeave={onMouseLeave}
+          onMouseUp={onMouseUp}
+          onMouseMove={onMouseMove}
+        >
           <div className="projects-track">
             {projects.map((project, index) => (
               <div key={index} className="project-card-wrapper">
@@ -71,6 +125,11 @@ export const ProjectsSection = () => {
               </div>
             ))}
           </div>
+        </div>
+
+        {/* md+: full deck (controls + stack + dots) nudged up slightly */}
+        <div className="hidden md:block md:-translate-y-5 lg:-translate-y-6">
+          <CardStack cards={stackCards} />
         </div>
       </div>
     </section>

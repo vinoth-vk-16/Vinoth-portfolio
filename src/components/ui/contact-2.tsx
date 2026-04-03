@@ -84,12 +84,12 @@ export const Contact2 = ({
   };
 
   return (
-    <section className="py-16 md:py-32 bg-black text-white">
-      <div className="container px-4">
+    <section className="py-16 md:py-32 bg-black text-white pl-[max(1rem,env(safe-area-inset-left))] pr-[max(1rem,env(safe-area-inset-right))]">
+      <div className="container px-4 max-w-full">
         <div className="mx-auto flex max-w-screen-xl flex-col justify-between gap-10 lg:flex-row lg:gap-32 lg:pl-20">
           <div className="flex max-w-sm flex-col justify-between gap-10 mx-auto lg:mx-0">
             <div className="text-center lg:text-left">
-              <h1 className="mb-2 text-4xl md:text-5xl font-semibold lg:mb-1 lg:text-6xl text-white">
+              <h1 className="mb-2 text-3xl font-semibold md:text-4xl lg:mb-1 lg:text-4xl text-white">
                 {title}
               </h1>
               <p className="text-gray-400 text-sm md:text-base mb-6">{description}</p>
@@ -108,7 +108,7 @@ export const Contact2 = ({
                     setEmailCopied(true);
                     setTimeout(() => setEmailCopied(false), 2000);
                   }}
-                  className="text-muted-foreground hover:text-foreground transition-colors relative"
+                  className="text-gray-400 hover:text-white transition-colors relative"
                   aria-label="Copy Email"
                 >
                   <Mail className="h-8 w-8" />
@@ -141,8 +141,8 @@ export const Contact2 = ({
             <div className="mx-auto w-fit lg:mx-0">
             </div>
           </div>
-          <form onSubmit={handleSubmit} className="flex max-w-screen-md flex-col gap-6 p-4">
-            <div className="flex gap-4">
+          <form onSubmit={handleSubmit} className="flex w-full max-w-screen-md flex-col gap-6 p-4 min-w-0">
+            <div className="flex flex-col gap-4 sm:flex-row sm:gap-4">
               <div className="grid w-full items-center gap-1.5">
                 <Label htmlFor="firstName">First Name</Label>
                 <Input 

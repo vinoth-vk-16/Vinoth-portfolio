@@ -5,12 +5,17 @@ const shapes = Array.from({ length: 72 }, (_, i) => `/Framer User Content/Shape 
 export const AnimatedShapes = () => {
   const [currentShape, setCurrentShape] = useState(0);
   const [isBlack, setIsBlack] = useState(true);
+  const [visible, setVisible] = useState(true);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentShape((prev) => (prev + 1) % shapes.length);
-      setIsBlack((prev) => !prev);
-    }, 500);
+      setVisible(false);
+      setTimeout(() => {
+        setCurrentShape((prev) => (prev + 1) % shapes.length);
+        setIsBlack((prev) => !prev);
+        setVisible(true);
+      }, 250);
+    }, 1000);
 
     return () => clearInterval(interval);
   }, []);
@@ -25,7 +30,8 @@ export const AnimatedShapes = () => {
           width: '150px',
           height: '150px',
           objectFit: 'contain',
-          opacity: 0.3
+          opacity: visible ? 0.3 : 0,
+          transition: 'opacity 0.25s ease',
         }}
       />
     </div>

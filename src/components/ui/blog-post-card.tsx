@@ -1,6 +1,7 @@
+import React from "react";
 import { Badge } from "./badge";
 import { Card, CardContent } from "./card";
-import { Github } from "lucide-react";
+import { Github as GithubIcon } from "lucide-react";
 
 export interface BlogPostCardProps {
   title: string;
@@ -21,13 +22,13 @@ export const BlogPostCard: React.FC<BlogPostCardProps> = ({
     <Card className="flex w-full flex-col gap-3 overflow-hidden rounded-3xl border p-3 shadow-lg h-full">
       {image && (
         <div className="w-full h-12 flex items-center justify-center p-2">
-          <img src={image} alt="" className="h-full w-auto object-contain opacity-20" />
+          <img src={image} alt="" className="h-full w-auto object-contain opacity-60" />
         </div>
       )}
       <CardContent className="flex-grow p-3 flex flex-col">
-        <h2 className="mb-2 text-2xl font-bold leading-tight text-card-foreground">
+        <h3 className="mb-2 text-2xl font-bold leading-tight text-card-foreground">
           {title}
-        </h2>
+        </h3>
 
         <p className="text-muted-foreground text-sm mb-4 flex-grow">
           {description}
@@ -50,7 +51,7 @@ export const BlogPostCard: React.FC<BlogPostCardProps> = ({
               className="inline-flex items-center text-muted-foreground hover:text-foreground transition-colors"
               aria-label="View on GitHub"
             >
-              <Github className="h-5 w-5" />
+              <GithubIcon className="h-5 w-5" />
             </a>
           </div>
         )}

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -76,6 +76,22 @@
   justify-content: center;
 }
 
+html {
+  scroll-padding-top: 3.4rem;
+}
+
+@media (max-width: 768px) {
+  html {
+    scroll-padding-top: 3.15rem;
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    scroll-padding-top: 2.95rem;
+  }
+}
+
 :root {
   --color-primary: #222222;
   --color-secondary: #7B7B7B;
@@ -95,28 +111,37 @@
   box-sizing: border-box;
 }
 
-/* Projects Section */
+/* Projects Section — tighter top so the heading sits closer under the nav */
 .projects-section {
   min-height: 100vh;
-  padding: 6rem 0;
+  padding: 3.25rem 0 4rem;
   background-color: var(--color-white);
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: visible;
   width: 100%;
   position: relative;
 }
 
 .projects-container {
-  max-width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
   padding: 0 2rem;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: visible;
   position: relative;
   z-index: 2;
 }
 
+.projects-section .section-title {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+/* Horizontal project cards — mobile only (md+ uses CardStack) */
 .projects-scroll {
   overflow-x: auto;
   overflow-y: hidden;
-  margin-top: 3rem;
+  margin-top: 1rem;
   cursor: grab;
   width: 100%;
   -webkit-overflow-scrolling: touch;
@@ -140,20 +165,22 @@
 
 .project-card-wrapper {
   flex-shrink: 0;
-  width: 400px;
+  width: min(320px, calc(100vw - 2.5rem));
 }
 
 @media (max-width: 768px) {
-  .project-card-wrapper {
-    width: 320px;
-  }
-  
   .projects-section {
-    padding: 8rem 0 4rem;
+    padding: 4.5rem 0 3.5rem;
   }
-  
+
   .projects-container {
-    padding: 0 1rem;
+    padding: 0 max(1rem, env(safe-area-inset-left)) 0 max(1rem, env(safe-area-inset-right));
+  }
+}
+
+@media (max-width: 480px) {
+  .project-card-wrapper {
+    width: min(300px, calc(100vw - 2rem));
   }
 }
 
@@ -185,10 +212,10 @@ body {
 }
 
 .learnings-main-title {
-  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-size: clamp(1.65rem, 2.6vw, 2.35rem);
   font-weight: 300;
   color: var(--color-primary);
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
   letter-spacing: -0.02em;
   text-align: left;
   padding-left: 0;
@@ -274,11 +301,13 @@ body {
 
 @media (max-width: 768px) {
   .learnings-section {
-    padding: 8rem 1.5rem 4rem;
+    padding: 8rem max(1rem, env(safe-area-inset-left)) 4rem max(1rem, env(safe-area-inset-right));
   }
   
   .learnings-container {
-    height: 70vh;
+    height: min(70vh, 36rem);
+    min-height: min(280px, 50vh);
+    max-height: 75vh;
   }
   
   .learnings-main-title {

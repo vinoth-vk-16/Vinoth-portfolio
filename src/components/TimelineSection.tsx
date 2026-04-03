@@ -71,7 +71,7 @@ function FullTimeInternContent() {
         onClick={() => setIsExpanded(!isExpanded)}
         className="text-neutral-800 hover:text-neutral-600 dark:text-neutral-200 dark:hover:text-neutral-400 text-xs md:text-sm font-medium mt-2 transition-colors"
       >
-        {isExpanded ? '← View less' : 'View more →'}
+        {isExpanded ? '↑ View less' : 'View more ↓'}
       </button>
     </div>
   );
@@ -80,7 +80,7 @@ function FullTimeInternContent() {
 export function TimelineSection() {
   const data = [
     {
-      title: "2025 - Present",
+      title: "Dec 2025 - Present",
       content: (
         <div>
           <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-4">
