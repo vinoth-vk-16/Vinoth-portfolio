@@ -73,8 +73,25 @@ export default defineConfig([
 ```
 # Vinoth-portfolio
 
+## Setup
+
+1. Clone the repository
+2. Install dependencies: `npm install`
+3. Copy `.env.example` to `.env` and add your NASA API key:
+   ```
+   VITE_NASA_API_KEY=your_nasa_api_key_here
+   ```
+   Get your API key from [NASA API Portal](https://api.nasa.gov/)
+4. Run development server: `npm run dev`
+
+## Features
+
+**Navigation:** The portfolio uses a StaggeredMenu component (`src/components/StaggeredMenu.tsx`) with GSAP animations for desktop (>768px). The menu slides in from the right with staggered layer animations and features large uppercase navigation items with numbering. Mobile devices use the original simple navigation with hamburger menu. Configuration is in `src/App.tsx`.
+
 Work and education timeline labels (including current role dates) are edited in `src/components/TimelineSection.tsx`.
 
 Hero headline, byline, and intro paragraphs live in `src/App.tsx` (`#hero`). Work history is under the **Experience** section (`#experience`, timeline only—no separate intro block).
+
+**NASA Landsat Gallery:** A section displaying the name "VINOTH" spelled out using satellite images from NASA's Landsat Program. The component (`src/components/NasaGallery.tsx`) fetches alphabet letter images from NASA's "Your Name in Landsat" collection, showing each letter as a natural Earth feature (rivers, lakes, valleys) captured by Landsat satellites. Images are cached locally for 24 hours and randomly selected from available variants on each cache refresh. Images are displayed in a responsive grid with hover effects revealing the geographic location of each letter.
 
 **Responsive layout:** Main breakpoints are `1024px`, `768px`, and `480px` in `src/App.css` and `src/index.css`. Notched devices use `env(safe-area-inset-*)` for nav, hero, sections, and scroll hints. The viewport meta tag uses `viewport-fit=cover` in `index.html`. Anchor scrolling accounts for the fixed header via `scroll-padding-top` on `html`.

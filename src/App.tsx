@@ -6,6 +6,8 @@ import { useState, useRef } from 'react'
 import { AnimatedShapes } from './components/AnimatedShapes'
 import { ProjectsSection } from './components/ProjectsSection'
 import { LearningsSection } from './components/LearningsSection'
+import { NasaGallery } from './components/NasaGallery'
+import StaggeredMenu from './components/StaggeredMenu'
 
 function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -18,10 +20,24 @@ function App() {
     if (el?.complete) setHeroImageLoaded(true)
   }
 
+  const menuItems = [
+    { label: 'Home', ariaLabel: 'Go to home page', link: '#hero' },
+    { label: 'Experience', ariaLabel: 'View my experience', link: '#experience' },
+    { label: 'Projects', ariaLabel: 'View my projects', link: '#projects' },
+    { label: 'Learnings', ariaLabel: 'View my learnings', link: '#learnings' },
+    { label: 'Contact', ariaLabel: 'Get in touch', link: '#contact' }
+  ];
+
+  const socialItems = [
+    { label: 'LinkedIn', link: 'https://www.linkedin.com/in/vinoth-kumar-793043250' },
+    { label: 'GitHub', link: 'https://github.com/vinoth-vk-16' },
+    { label: 'Email', link: 'mailto:imvinothvk521@gmail.com' }
+  ];
+
   return (
     <div className="app">
-      {/* Navigation */}
-      <nav className="nav">
+      {/* Original Navigation for Mobile */}
+      <nav className="nav mobile-only-nav">
         <div className="logo">✦</div>
         <ul className={`nav-links ${mobileMenuOpen ? 'mobile-open' : ''}`}>
           <li><a href="#hero" onClick={() => setMobileMenuOpen(false)}>Home</a></li>
@@ -36,6 +52,24 @@ function App() {
           <span></span>
         </button>
       </nav>
+
+      {/* StaggeredMenu Navigation for Desktop */}
+      <div className="desktop-only-nav">
+        <StaggeredMenu
+          position="right"
+          items={menuItems}
+          socialItems={socialItems}
+          displaySocials={true}
+          displayItemNumbering={true}
+          menuButtonColor="#000"
+          openMenuButtonColor="#fff"
+          changeMenuColorOnOpen={true}
+          colors={['#2a2a2a', '#4a4a4a']}
+          logoUrl="/logo.svg"
+          accentColor="#6b6b6b"
+          isFixed={true}
+        />
+      </div>
 
       {/* Hero Section */}
       <section id="hero" className="hero section">
@@ -164,6 +198,9 @@ function App() {
           linkedin="https://www.linkedin.com/in/vinoth-kumar-793043250"
         />
       </section>
+
+      {/* NASA Gallery Section */}
+      <NasaGallery />
     </div>
   )
 }

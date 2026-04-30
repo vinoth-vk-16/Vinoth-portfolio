@@ -95,6 +95,26 @@
   display: block;
 }
 
+/* Hide mobile nav on desktop, show staggered menu */
+.mobile-only-nav {
+  display: flex;
+}
+
+.desktop-only-nav {
+  display: none;
+}
+
+@media (min-width: 769px) {
+  /* Hide mobile nav, show staggered menu on desktop */
+  .mobile-only-nav {
+    display: none;
+  }
+
+  .desktop-only-nav {
+    display: block;
+  }
+}
+
 /* Hero Section — padding-top clears fixed .nav so headline starts below header */
 .hero {
   min-height: 100vh;
@@ -304,6 +324,15 @@
   }
   
   .desktop-only {
+    display: none;
+  }
+
+  /* Show mobile nav, hide staggered menu on mobile */
+  .mobile-only-nav {
+    display: flex;
+  }
+
+  .desktop-only-nav {
     display: none;
   }
   

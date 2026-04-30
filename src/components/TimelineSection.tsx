@@ -102,6 +102,11 @@ export function TimelineSection() {
             into Docker images, pushed to Amazon ECR, and created Lambda functions for direct ECR access. 
             Achieved millisecond-level code compilation times across multiple programming languages with scalable architecture.
           </p>
+
+          <p className="text-neutral-700 dark:text-neutral-300 text-xs md:text-sm mb-4">
+            Visited <strong>AWS AI Conclave 2026</strong>: attended tech talks, met and networked with builders and product teams,
+            and gained exposure by engaging with AI product companies and their roadmaps in person.
+          </p>
         </div>
       ),
     },
